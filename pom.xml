@@ -10,7 +10,7 @@
     <relativePath/>
   </parent>
   <groupId>com.cloudshare</groupId>
-  <artifactId>cloudshare-jenkins</artifactId>
+  <artifactId>cloudshare-docker</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>hpi</packaging>
 
@@ -41,22 +41,18 @@
     </license>
   </licenses>
 
-  <!-- If you want this to appear on the wiki page:
   <developers>
     <developer>
-      <id>bhacker</id>
-      <name>Bob Q. Hacker</name>
-      <email>bhacker@nowhere.net</email>
+      <id>CloudShare</id>
+      <name>Assaf Lavie</name>
+      <email>assaf@cloudshare.com</email>
     </developer>
   </developers>
-  -->
-  <!-- Assuming you want to host on @jenkinsci:
   <scm>
     <connection>scm:git:git://github.com/jenkinsci/${project.artifactId}-plugin.git</connection>
     <developerConnection>scm:git:git@github.com:jenkinsci/${project.artifactId}-plugin.git</developerConnection>
     <url>http://github.com/jenkinsci/${project.artifactId}-plugin</url>
   </scm>
-   -->
   <repositories>
     <repository>
       <id>repo.jenkins-ci.org</id>
@@ -78,14 +74,4 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
-  <!-- If you want to depend on other plugins:
-  <dependencies>
-    <dependency>
-      <groupId>org.jenkins-ci.plugins</groupId>
-      <artifactId>credentials</artifactId>
-      <version>1.9.4</version>
-    </dependency>
-  </dependencies>
-  -->
-
 </project>
