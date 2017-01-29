@@ -19,7 +19,7 @@
     </f:entry>
     <f:entry title="API Key" field="apiKey"
              description="CloudShare API Key">
-      <f:textbox value="${it.apiKey}"/>
+      <f:password value="${it.apiKey}"/>
     </f:entry>
   </f:section>
 </j:jelly>
