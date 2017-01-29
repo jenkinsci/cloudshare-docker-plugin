@@ -68,7 +68,7 @@ public class DockerMachineWrapper extends SimpleBuildWrapper {
         return new DockerMachineResult(buffer.toString(), exitCode);
     }
 
-    private void panic(String format, String... args) throws AbortException {
+    private void panic(String format, Object... args) throws AbortException {
         String msg = String.format(format, args);
         throw new AbortException(msg);
     }
