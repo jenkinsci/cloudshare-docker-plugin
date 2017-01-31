@@ -20,6 +20,7 @@ By using a dedicated docker-machine for each Jenkins project you enjoy the follo
 - Jenkins 2.0 and up (for pipeline support).
 - This plugin depends on [Docker-Machine](https://docs.docker.com/machine/install-machine/).
 - The [CloudShare docker-machine driver](https://github.com/cloudshare/docker-machine-driver-cloudshare) must be installed and in Jenkins' `PATH`.
+    - If you are using Jenkins slaves, make sure the above is installed on all of them, as well as the master node.
 
 Install this plugin through the Jenkins Plugin Manager.
 
