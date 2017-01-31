@@ -4,6 +4,8 @@
 
 - Java (tested with 1.8)
 - Maven (tested with 3.3.9)
+- [Docker-Machine](https://docs.docker.com/machine/install-machine/)
+- [CloudShare's Docker-Machine driver](https://github.com/cloudshare/docker-machine-driver-cloudshare)
 
 ## Building HPI package
 
@@ -15,7 +17,7 @@ To create a HPI file (ready to be intalled as a Jenkins plugin) run `mvn package
 
 `target/cloudshare-docker.hpi` should be created.
 
-# Debugging
+# Debugging (IntelliJ)
 
 - Import the project's `pom.xml` in IntelliJ.
 - Create a Maven launch configuration that runs `hpi:run -Djetty.port=8081`
