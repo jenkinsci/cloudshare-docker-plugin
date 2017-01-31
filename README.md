@@ -24,6 +24,15 @@ By using a dedicated docker-machine for each Jenkins project you enjoy the follo
 
 Install this plugin through the Jenkins Plugin Manager.
 
+## Configuration
+
+Once the plugin is installed, enter your CloudShare API key & ID in the global configuration page ("Configure System").
+
+![plugin configuration screenshot](https://i.imgur.com/Wtr8Dow.png)
+
+You can obtain the API key in [your details page](https://use.cloudshare.com/Ent/Vendor/UserDetails.aspx) on CloudShare.
+
+
 # Usage
 
 You can enable CloudShare docker-machines for your builds both in classic projects (under `Build Environment`) and as a pipeline step.
