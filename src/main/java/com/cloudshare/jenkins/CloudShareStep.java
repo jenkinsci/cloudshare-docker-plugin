@@ -94,7 +94,7 @@ public class CloudShareStep extends AbstractStepImpl {
             EnvironmentExpander expander = new EnvironmentExpander() {
                 @Override
                 public void expand(@Nonnull EnvVars envVars) throws IOException, InterruptedException {
-                   envVars.overrideAll(dmEnvars);
+                    envVars.overrideAll(dmEnvars);
                 }
             };
 

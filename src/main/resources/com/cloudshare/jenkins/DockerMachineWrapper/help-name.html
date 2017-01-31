@@ -1,5 +1,9 @@
 <div>
   Override the default docker-machine name for this project.
   <br>
-  You can use environment variables. The default value is <tt>jenkins-$JOB_NAME</tt>, which means an environment by the name of <tt>docker-machine-jenkins-[job name]</tt> would be used.
+  You can use environment variables.
+  <br>
+  The default value is <tt>jenkins-$JOB_NAME</tt>, which means a CloudShare environment by the name of <tt>docker-machine-jenkins-[job name]</tt> would be used (<tt>docker-machine-</tt> is always prefixed by the docker-machine driver).
+  <br>
+  Remember to also in <a href="../../configure">configure the CloudShare API keys</a>.
 </div>
