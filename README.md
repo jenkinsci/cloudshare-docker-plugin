@@ -76,3 +76,8 @@ cloudShareDockerMachine(name: 'my-environment') {
 ```
 
 **Outside** the scope of the `cloudshareDockerMachine` step any docker command would run against the local Docker daemon.
+
+
+## A note about concurrent builds
+
+The default docker-machine name is `jenkins-$JOB_NAME`, which means there will be one CloudShare environment per Jenkins job. If you have enabled `Execute concurrent builds if necessary` in your Jenkins job, be aware that concurrent builds will run on the same CloudShare VM. If this is a problem for you (e.g. you are publishing host ports during the build), consider changing the docker-machine name to something like `jenknis-$JOB_NAME-$EXECUTOR_NUMBER`, to achieve complete isolation. However, this has the disadvantage of using multiple environments to uild the same job, thus incurring more Docker layer cache misses and slower builds. Another solution would be to avoid publishing container ports to the host, for example by using named networks in Docker-Compose, where the project name contains the build number.
