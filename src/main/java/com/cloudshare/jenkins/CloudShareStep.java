@@ -76,6 +76,9 @@ public class CloudShareStep extends AbstractStepImpl {
 
     public static class Execution extends AbstractStepExecutionImpl {
 
+        // Google "SE_NO_SERIALVERSIONID"
+        static final long serialVersionUID = 1L;
+
         @Inject
         private transient CloudShareStep step;
 

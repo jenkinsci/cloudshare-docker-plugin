@@ -5,6 +5,7 @@ import hudson.EnvVars;
 import hudson.Launcher;
 import hudson.Proc;
 import hudson.model.TaskListener;
+import org.apache.commons.lang.StringUtils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -29,7 +30,7 @@ public class DockerMachineSetup {
         String id = cfg.getApiId();
 
         String credsErrorMessage = "CloudShare API key/ID not supplied.\nPlease supply it in Manage Jenkins -> Configure System -> CloudShare.\nYou can find your API keys at https://use.cloudshare.com/Ent/Vendor/UserDetails.aspx";
-        if (key == null || key == "" || id == null || id == "") {
+        if (StringUtils.isEmpty(key) || StringUtils.isEmpty(id)) {
             throw new AbortException(credsErrorMessage);
         }
         vars.put("CLOUDSHARE_API_ID", id);
@@ -45,7 +46,7 @@ public class DockerMachineSetup {
 
         Proc dm = launcher.launch(dmStarter);
         int exitCode = dm.join();
-        return new DockerMachineResult(buffer.toString(), exitCode);
+        return new DockerMachineResult(buffer.toString("UTF-8"), exitCode);
     }
 
     public static void panic(String format, Object... args) throws AbortException {
@@ -73,10 +74,10 @@ public class DockerMachineSetup {
         }
 
         if (!res.output.startsWith("Running")) {
-            log.printf("Resuming Docker-Machine %s...\n", dmName);
+            log.printf("Resuming Docker-Machine %s...%n", dmName);
             res = dockerMachineCommand(launcher, null, "start", dmName);
             if (res.exitCode != 0) {
-                panic("Docker Machine failed to start.\n%s\n", res.output);
+                panic("Docker Machine failed to start.%n%s%n", res.output);
             }
         }
 
@@ -92,7 +93,7 @@ public class DockerMachineSetup {
 
         res = dockerMachineCommand(launcher, null, "env", dmName);
         if (res.exitCode != 0) {
-            panic("Docker Machine env not available.\n%s\n", res.output);
+            panic("Docker Machine env not available.%n%s%n", res.output);
         }
 
         Map<String, String> ret = new HashMap<String, String>();
