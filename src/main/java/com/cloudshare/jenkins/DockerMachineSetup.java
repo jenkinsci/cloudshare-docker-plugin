@@ -91,7 +91,7 @@ public class DockerMachineSetup {
             listener.getLogger().append(".\n");
         }
 
-        res = dockerMachineCommand(launcher, null, "env", dmName);
+        res = dockerMachineCommand(launcher, null, "env", "--shell", "/bin/bash", dmName);
         if (res.exitCode != 0) {
             panic("Docker Machine env not available.%n%s%n", res.output);
         }
