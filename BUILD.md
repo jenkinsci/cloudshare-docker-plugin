@@ -26,5 +26,7 @@ To create a HPI file (ready to be intalled as a Jenkins plugin) run `mvn package
     - This will launch a Jenkins instance at `http://localhost:8081/jenkins` with the plugin loaded.
     - To change the version of Jenkins that the debugger runs, edit `pom.xml`.
 
+# Releasing
 
+To publish the plugin publicly (to the global Jenkins plugin index) run `make release`. It will take care of tagging for you in Git, so don't tag the commit yourself - let the release procedure do it.
 
