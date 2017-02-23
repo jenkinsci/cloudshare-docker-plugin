@@ -1,5 +1,6 @@
 package com.cloudshare.jenkins;
 
+import com.google.common.base.Strings;
 import hudson.*;
 import hudson.model.*;
 import hudson.tasks.BuildWrapperDescriptor;
@@ -14,17 +15,21 @@ import java.util.Map;
 
 public class DockerMachineWrapper extends SimpleBuildWrapper {
 
-    private final String name;
+    private String name;
+    private String expiryDays;
 
     // Fields in config.jelly must match the parameter names in the "DataBoundConstructor"
     @DataBoundConstructor
-    public DockerMachineWrapper(String name) {
+    public DockerMachineWrapper(String name, String expiryDays) {
         this.name = name;
+        this.expiryDays = expiryDays;
     }
 
     public String getName() {
         return name;
     }
+
+    public String getExpiryDays() { return expiryDays; }
 
     public DescriptorImpl getDescriptor() {
         return (DescriptorImpl) super.getDescriptor();
@@ -38,7 +43,6 @@ public class DockerMachineWrapper extends SimpleBuildWrapper {
         for (Map.Entry<String, String> e : envars.entrySet()) {
             context.env(e.getKey(), e.getValue());
         }
-
     }
 
     @Extension // This indicates to Jenkins that this is an implementation of an extension point.
@@ -60,6 +64,17 @@ public class DockerMachineWrapper extends SimpleBuildWrapper {
                 throws IOException, ServletException {
             if (value.length() == 0)
                 return FormValidation.error("Machine name cannot be empty.");
+            return FormValidation.ok();
+        }
+
+        public FormValidation doCheckExpiryDays(@QueryParameter String value) throws IOException, ServletException {
+            if (!Strings.isNullOrEmpty(value)) {
+                try {
+                    Integer.parseInt(value);
+                } catch (java.lang.NumberFormatException e) {
+                    return FormValidation.error("Please enter a valid number (integer).");
+                }
+            }
             return FormValidation.ok();
         }
 

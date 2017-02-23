@@ -20,22 +20,29 @@ public class CloudShareStep extends AbstractStepImpl {
 
     private String name = DEFAULT_MACHINE_NAME;
 
+    private int expiryDays;
+
     @DataBoundConstructor
-    public CloudShareStep(String name) {
+    public CloudShareStep(String name, int expiryDays) {
         if (name != null) {
             setName(name);
         }
-
+        setExpiryDays(expiryDays);
     }
 
     public String getName() {
         return this.name;
     }
 
+    public int getExpiryDays() { return this.expiryDays; }
+
     @DataBoundSetter
     public void setName(String name) {
         this.name = name;
     }
+
+    @DataBoundSetter
+    public void setExpiryDays(int expiryDays) { this.expiryDays = expiryDays; }
 
     public DescriptorImpl getDescriptor() {
         return (DescriptorImpl) super.getDescriptor();

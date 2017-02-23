@@ -3,4 +3,10 @@
   <f:entry title="Machine Name" field="name">
     <f:textbox default="${descriptor.getDefaultMachineName()}"/>
   </f:entry>
+
+  <f:advanced title="Advanced Settings">
+    <f:entry field="expiryDays" title="Days until VM expires" description="VMs expire automatically according to your CloudShare policy. You can override this policy, or leave it empty to use the default.">
+      <f:textbox />
+    </f:entry>
+  </f:advanced>
 </j:jelly>

@@ -3,5 +3,8 @@
   <f:entry title="Machine Name" field="name">
     <f:textbox default="${descriptor.getDefaultMachineName()}"/>
   </f:entry>
+  <f:entry title="Days until VM expires" field="expiryDays">
+    <f:textbox />
+  </f:entry>
 </j:jelly>
 

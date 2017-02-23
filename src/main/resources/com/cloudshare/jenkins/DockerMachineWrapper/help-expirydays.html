@@ -1,0 +1,9 @@
+<div>
+    Override the default <a href="https://www.cloudshare.com/blog/controlling-your-costs-with-environment-policies">environment policy</a> of your CloudShare project.
+    <br>
+    VMs "expire" according to your default policy. If you wish to override this behavior, you can specify a different number of days for expiration.
+    <br>
+    For example, you can specify 1 day expiration for your job, which means the VM will be deleted after 24 hours. If you build the job again, after the VM has expired, a new VM will be created with the same name.
+    <br>
+    This helps you avoid accumulating unused VMs, and also means you don't need to prune/GC the images/containers on your VM as often.
+</div>
