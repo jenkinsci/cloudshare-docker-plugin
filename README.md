@@ -81,3 +81,14 @@ cloudShareDockerMachine(name: 'my-environment') {
 ## A note about concurrent builds
 
 The default docker-machine name is `jenkins-$JOB_NAME`, which means there will be one CloudShare environment per Jenkins job. If you have enabled `Execute concurrent builds if necessary` in your Jenkins job, be aware that concurrent builds will run on the same CloudShare VM. If this is a problem for you (e.g. you are publishing host ports during the build), consider changing the docker-machine name to something like `jenknis-$JOB_NAME-$EXECUTOR_NUMBER`, to achieve complete isolation. However, this has the disadvantage of using multiple environments to uild the same job, thus incurring more Docker layer cache misses and slower builds. Another solution would be to avoid publishing container ports to the host, for example by using named networks in Docker-Compose, where the project name contains the build number.
+
+## Cleanup
+
+When a dedicated environment is created per job, you might find yourself accumulating unused environments over time. However, CloudShare environments have a default policy that governs how long they persist. By default environments will be deleted after 14 days. So environment accumulation is not a huge concern, after all.
+
+You can override the default policy for docker-machine environments, if you wish. For example, if you want VMs to hang around for at most 3 days, instead of 14, you can configure the expiry in the project settings (or using the pipeline syntax).
+
+![expiry screenshot](https://cdn.assaflavie.com/monosnap/chat_Config_Jenkins_2017-03-05_11-46-18.png)
+
+
+
