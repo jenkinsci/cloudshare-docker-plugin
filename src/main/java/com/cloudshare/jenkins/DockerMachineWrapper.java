@@ -39,7 +39,11 @@ public class DockerMachineWrapper extends SimpleBuildWrapper {
     public void setUp(Context context, Run<?, ?> build, FilePath workspace, Launcher launcher, TaskListener listener, EnvVars initialEnvironment) throws IOException, InterruptedException {
 
         String actualName = initialEnvironment.expand(name);
-        Map<String, String> envars = DockerMachineSetup.startDockerMachine(actualName, launcher, listener);
+        int days = 0;
+        if (!Strings.isNullOrEmpty(expiryDays)) {
+            days = Integer.parseInt(this.expiryDays);
+        }
+        Map<String, String> envars = DockerMachineSetup.startDockerMachine(actualName, launcher, listener, days);
         for (Map.Entry<String, String> e : envars.entrySet()) {
             context.env(e.getKey(), e.getValue());
         }

@@ -54,14 +54,20 @@ public class DockerMachineSetup {
         throw new AbortException(msg);
     }
 
-    public static Map<String, String> startDockerMachine(String dmName, Launcher launcher, TaskListener listener) throws IOException, InterruptedException {
+    // expiryDays == 0 means use default policy.
+    public static Map<String, String> startDockerMachine(String dmName, Launcher launcher, TaskListener listener, int expiryDays) throws IOException, InterruptedException {
         PrintStream log = listener.getLogger();
 
         DockerMachineResult res  = dockerMachineCommand(launcher, null, "status", dmName);
         if (res.exitCode != 0) {
             if (res.output.startsWith("Host does not exist")) {
                 log.println("CloudShare Docker-Machine for this project not found. Creating one...");
-                res = dockerMachineCommand(launcher, listener, "create", "-d", "cloudshare", dmName);
+
+                if (expiryDays == 0) {
+                    res = dockerMachineCommand(launcher, listener, "create", "-d", "cloudshare", dmName);
+                } else {
+                    res = dockerMachineCommand(launcher, listener, "create", "-d", "cloudshare", "--cloudshare-vm-expiry-days", Integer.toString(expiryDays), dmName);
+                }
                 if (res.exitCode != 0) {
                     panic("Failed to create Docker machine.");
                 }

@@ -99,7 +99,7 @@ public class CloudShareStep extends AbstractStepImpl {
         public boolean start() throws Exception {
 
             final String actualName = getContext().get(EnvVars.class).expand(step.getName());
-            final Map<String, String> dmEnvars = DockerMachineSetup.startDockerMachine(actualName, launcher, listener);
+            final Map<String, String> dmEnvars = DockerMachineSetup.startDockerMachine(actualName, launcher, listener, step.expiryDays);
 
             EnvironmentExpander expander = new EnvironmentExpander() {
                 @Override
